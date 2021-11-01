@@ -1,0 +1,202 @@
+
+
+<MDItem@MDBoxLayout>:
+    perc: 0
+    title: ""
+    sub_title: ""
+    orientation: 'vertical'
+    padding: dp(10), dp(20)
+    spacing: dp(30)
+    adaptive_height: True
+    md_bg_color: RC()
+    radius: [dp(30)]
+    MDLabel:
+        text: "{0}%".format(root.perc)
+        size_hint: None, None
+        font_size: sp(20)
+        size: dp(80), dp(80)
+        radius: [dp(80)]
+        halign: "center"
+        bold: True
+        color: 1,1,1
+        pos_hint: {'center_x': .5}
+        canvas.after:
+            Color:
+                rgba: 1,1,1,.3
+            Line:
+                width: dp(4)
+                circle: self.center + [dp(44)]
+            Color:
+                rgb: 1,1,1
+            Line:
+                width: dp(4)
+                circle: self.center + [dp(44), 0, (root.perc * 3.6)]
+            Ellipse:
+                pos: self.right, self.y
+                size: dp(10), dp(10)
+    MDBoxLayout:
+        orientation: 'vertical'
+        adaptive_height: True
+        spacing: dp(5)
+        MDLabel:
+            bold: True
+            color: 1,1,1
+            font_size: sp(18)
+            text: root.title
+            adaptive_height: True
+        MDLabel:
+            color: 1,1,1
+            font_size: sp(16)
+            adaptive_height: True
+            text: root.sub_title
+# END MDItem
+
+
+<HomeMainScreen>:
+    MDBoxLayout:
+        orientation: 'vertical'
+        md_bg_color: app.theme_cls.primary_color
+        MDToolbar:
+            elevation: 0
+            pos_hint: {"top": 1}
+            left_action_items: [["menu", lambda x:x]]
+            right_action_items: [["magnify", lambda x:x]]
+        BoxLayout:
+            orientation: 'vertical'
+            ScrollView:
+                always_overscroll: False
+                MDBoxLayout:
+                    adaptive_height: True
+                    orientation: 'vertical'
+                    md_bg_color: 1,1,1,1
+                    MDBoxLayout:
+                        adaptive_height: True
+                        radius: [0,0, dp(40), dp(40)]
+                        md_bg_color: app.theme_cls.primary_color
+                        padding: dp(40), dp(30)
+                        FitImage:
+                            source: "assets/user.png"
+                            size_hint: None, None
+                            size: dp(50), dp(50)
+                            radius: [dp(60)]
+                            pos_hint: {'center_y': .5}
+                            canvas.after:
+                                Color:
+                                    rgb: C("#C2185B")
+                                Line:
+                                    width: dp(2)
+                                    circle: self.center + [dp(31), 0, 260]
+                        MDBoxLayout:
+                            orientation: 'vertical'
+                            adaptive_height: True
+                            spacing: dp(5)
+                            padding: 0, dp(10)
+                            pos_hint: {'center_y': .5}
+                            MDLabel:
+                                bold: True
+                                text: "Sourav Suman"
+                                adaptive_height: True
+                                font_size: sp(22)
+                                padding: dp(10), 0
+                                halign: "center"
+                                color: 0,0,.3
+                            MDLabel:
+                                text: "App Developer"
+                                adaptive_height: True
+                                halign: "center"
+                                color: .5,.5,.5
+                    ########
+                    MDBoxLayout:
+                        adaptive_height: True
+                        padding: dp(20), dp(15)
+                        MDLabel:
+                            text: "My Tasks"
+                            bold: True
+                            color: 0,0,.3
+                            font_size: sp(20)
+                            adaptive_height: True
+                            pos_hint: {'center_y': .5}
+                        MDIconButton:
+                            icon: "calendar-blank"
+                            md_bg_color: C("#26A69A")
+                            adaptive_height: True
+                            theme_text_color: "Custom"
+                            text_color: 1,1,1,1
+                            pos_hint: {'center_y': .5}
+                    ########
+                    MDBoxLayout:
+                        orientation: 'vertical'
+                        adaptive_height: True
+                        TwoLineIconListItem:
+                            text: "[b]To Do[/b]"
+                            secondary_text: "5 tasks now. 1 started"
+                            divider:None
+                            theme_text_color: "Custom"
+                            text_color: 0,0,.3,1
+                            IconLeftWidget:
+                                icon: "timer-outline"
+                                md_bg_color: C("#E57373")
+                                theme_text_color: "Custom"
+                                text_color: 1,1,1,1                                
+                        TwoLineIconListItem:
+                            text: "[b]In progress[/b]"
+                            secondary_text: "1 tasks now. 1 started"
+                            divider:None
+                            theme_text_color: "Custom"
+                            text_color: 0,0,.3,1
+                            IconLeftWidget:
+                                icon: "circle-double"
+                                md_bg_color: C("#FFB74D")
+                                theme_text_color: "Custom"
+                                text_color: 1,1,1,1                                
+                        TwoLineIconListItem:
+                            text: "[b]Done[/b]"
+                            secondary_text: "18 tasks now. 13 started"
+                            divider:None
+                            theme_text_color: "Custom"
+                            text_color: 0,0,.3,1
+                            IconLeftWidget:
+                                icon: "check-circle-outline"
+                                md_bg_color: C("#5C6BC0")
+                                theme_text_color: "Custom"
+                                text_color: 1,1,1,1                                
+                    ########
+                    MDBoxLayout:
+                        adaptive_height: True
+                        padding: dp(20), dp(15)
+                        MDLabel:
+                            text: "Active Projects"
+                            bold: True
+                            color: 0,0,.3
+                            font_size: sp(20)
+                            adaptive_height: True
+                            pos_hint: {'center_y': .5}
+                    ########
+                    MDGridLayout:
+                        cols: 2
+                        padding: dp(12), dp(12)
+                        spacing: dp(10)
+                        adaptive_height: True
+                        MDItem:
+                            perc: 25
+                            title: "Medical App"
+                            sub_title: "9 hours progress"
+                            md_bg_color: C("#26A69A")
+                        MDItem:
+                            perc: 60
+                            title: "Notes App"
+                            sub_title: "20 hours progress"
+                            md_bg_color: C("#E57373")
+                        MDItem:
+                            perc: 85
+                            title: "Entreprise App"
+                            sub_title: "7 hours progress"
+                            md_bg_color: C("#FFB74D")
+                        MDItem:
+                            perc: 30
+                            title: "Password App"
+                            sub_title: "4 hours progress"
+                            md_bg_color: C("#5C6BC0")
+                    MDBoxLayout:
+                        size_hint_y: None
+                        height: dp(20)
